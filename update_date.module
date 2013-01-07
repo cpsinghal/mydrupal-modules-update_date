@@ -1,0 +1,38 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+function update_date_menu(){
+     $items['update-date'] = array(
+      'title' => 'Generic form',
+      'page callback' => 'update_date',
+      'access callback' => TRUE,
+      'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+function update_date_node_view($node, $view_mode, $langcode) {
+    if($node->type=='article'){
+        drupal_add_js(drupal_get_path('module', 'update_date').'/update_date.js');
+        $node->content['field_test2']=array(0 => array(
+                                        '#type' => 'button',
+                                        '#value'=>t('Set as Today'),
+                                        '#attributes'=>array('onclick'=>"update_date('$node->nid'); return false;")
+                                        ));
+    }
+   
+}
+
+function update_date(){
+    $nid=arg(1);
+    $node=node_load($nid);
+    $new_date=date('y-m-d H:i:s',time());
+    $node->field_datetest['und'][0][value]=$new_date;
+    node_save($node);
+    $fdate=format_date(time(),'long');
+   die($fdate);
+}
+
+?>
