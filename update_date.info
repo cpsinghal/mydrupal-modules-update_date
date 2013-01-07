@@ -1,0 +1,10 @@
+; $Id: general.info, v 1.1.4.1.4.1  2012-11-06 15:58:38  Exp $
+name = Update Date Module
+description = This is a custom module, used to define custom hook menu and Generic custom form.  
+version = VERSION
+core = 7.x
+
+; Information added by drupal.org packaging script on 2012-11-06
+version = "7.16"
+package = Custom
+datestamp = "1350508567"
